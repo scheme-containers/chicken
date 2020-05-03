@@ -5,7 +5,7 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
       build-essential \
  && rm -rf /var/lib/apt/lists/*
 WORKDIR /build
-RUN git clone https://code.call-cc.org/git/chicken-core.git chicken --depth 1
+RUN git clone https://code.call-cc.org/git/chicken-core.git chicken
 WORKDIR /build/chicken
 RUN make PLATFORM=linux spotless
 RUN make PLATFORM=linux CHICKEN=/usr/local/bin/chicken
