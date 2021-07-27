@@ -10,11 +10,11 @@ WORKDIR /build/chicken
 RUN make PLATFORM=linux spotless
 RUN make PLATFORM=linux CHICKEN=/usr/local/bin/chicken
 RUN make PLATFORM=linux install
-RUN chicken-install r7rs
 
 FROM debian:buster-slim
 RUN apt-get update && apt-get -y --no-install-recommends install \
       gcc libc-dev \
  && rm -rf /var/lib/apt/lists/*
 COPY --from=build /usr/local/ /usr/local/
+RUN chicken-install r7rs
 CMD ["scheme-banner"]
